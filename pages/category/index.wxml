@@ -1,0 +1,28 @@
+<search />
+<view class="category">
+  <!-- 左侧 -->
+  <scroll-view scroll-y class="category-left">
+    <block wx:for="{{ categories }}" wx:key="cat_id">
+      <view class="category-left-item {{ index === activeIndex ? 'active' : '' }}" bindtap="changeTab" data-index="{{ index }}">
+        {{ item.cat_name }}
+      </view>
+    </block>
+  </scroll-view>
+
+  <!-- 右侧 -->
+  <scroll-view scroll-y class="category-right" scroll-top="{{ rightTop }}">
+    <block wx:for="{{ details }}" wx:key="cat_id">
+      <view class="product-title">
+        {{ item.cat_name }}
+      </view>
+      <view class="product-list">
+        <block wx:for="{{ item.children }}" wx:key="cat_id">
+          <navigator url="/pages/goods_list/index?cid={{item.cat_id}}&query={{item.cat_name}}" class="product-list-item">
+            <image src="{{ item.cat_icon }}"></image>
+            <text class="product-list-text">{{ item.cat_name }}</text>
+          </navigator>
+        </block>
+      </view>
+    </block>
+  </scroll-view>
+</view>

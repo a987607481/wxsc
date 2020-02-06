@@ -1,0 +1,45 @@
+<view class="address">
+    <view class="address-info">
+        <text space="emsp">用户名: {{ address.userName }}</text>
+        <text space="emsp">电 话: {{ address.telNumber }}</text>
+        <text space="emsp">收货地址: {{ address.addressDetail }}</text>
+    </view>
+</view>
+<view class="cart">
+    <view class='cart-title'>购物车</view>
+    <view class="cart-list">
+        <block wx:for="{{cartArr}}" wx:key="goods_id">
+            <view class='cart-item' wx:if="{{ item.goods_checked }}">
+                <view class="cart-item-right">
+                    <navigator url="/pages/goods_detail/index?goods_id={{ item.goods_id }}" class="product-item">
+                        <image src="{{ item.goods_small_logo }}" class="product-item-left" />
+                        <view class="product-item-right">
+                            <view class="product-name">{{item.goods_name}}</view>
+                            <view class="product-price">{{ item.goods_price}}</view>
+                        </view>
+                    </navigator>
+                    <view class="count">
+                        <view class="count-number">x {{ item.goods_count }}</view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>
+<view class="fixed-bar">
+    <view class="bar-group">
+        <view class="total">
+            <view class="total-top">
+                <text class="total-text">合计:</text>
+                <text class="total-price">{{ totalMoney }}</text>
+            </view>
+            <view class="total-down">包含运费</view>
+        </view>
+    </view>
+    <view class="bar-btn">
+        <button class="token-btn" wx:if="{{ !token }}" open-type="getUserInfo" bindgetuserinfo="getToken">
+            未登录
+        </button>
+        <view bindtap="payHandle" wx:else>支付({{ totalCount }})</view>
+    </view>
+</view>

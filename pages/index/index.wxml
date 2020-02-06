@@ -1,0 +1,37 @@
+<!-- 搜索框 -->
+<search/>
+<!-- 轮播图 -->
+<swiper class="slider" indicator-dots indicator-color="#96defc" indicator-active-color="#fff" autoplay circular>
+  <block wx:for="{{swiperImgs}}" wx:key="goods_id">
+    <swiper-item>
+      <navigator url="{{item.navigator_url}}" open-type="{{item.open_type}}">
+        <image class="slider-image" src="{{item.image_src}}"></image>
+      </navigator>
+    </swiper-item>
+  </block>
+</swiper>
+<view class="nav">
+  <block wx:for="{{nav}}" wx:key="name">
+    <navigator url="{{item.navigator_url}}" open-type="{{item.open_type}}">
+      <image src="{{item.image_src}}" class="nav-img"></image>
+    </navigator>
+  </block>
+</view>
+<block wx:for="{{cont}}" wx:key="name">
+  <view class="cont-head">
+    <image class="cont-head-image" src="{{ item.floor_title.image_src }}"></image>
+  </view>
+  <view class="cont-body">
+    <view class="cont-body-left">
+     <image src="{{item.product_list[0].image_src}}" style="width:{{item.product_list[0].image_width}}rpx" class="cont-left-img"></image>
+    </view>
+    <view class="cont-body-right">
+       <block wx:for="{{ item.product_list }}" wx:key="name" >
+        <image style="width:{{item.image_width}}rpx" wx:if="{{ index > 0 }}" class="cont-right-image" src="{{ item.image_src }}"></image>
+      </block>
+    </view>
+  </view>
+</block>
+<view class="top" hidden="{{ showTop }}"  bindtap="goTop" data-top="{{ 0 }}">
+  <text class="top-text">顶部</text>
+</view>

@@ -1,0 +1,45 @@
+<!-- 轮播图 -->
+<swiper class="slider-swiper" autoplay indicator-dots circular>
+    <swiper-item wx:for="{{goodsDetail.pics}}" wx:key="pics_id">
+        <image bindtap="previewBigImage" data-curr="{{ item.pics_big }}" src="{{item.pics_big}}" mode="aspectFill" />
+    </swiper-item>
+</swiper>
+<!-- 价格 -->
+<view class="goods-price">
+    <text>{{goodsDetail.goods_price}}</text>
+</view>
+<!-- 说明 -->
+<view class="goods-info">
+    <view class="goods-name">{{goodsDetail.goods_name}}</view>
+    <view class="goods-collect" bindtap='handleCollect'>
+        <mp-icon icon="star" size='{{25}}' color="#999"></mp-icon>
+        <view>收藏</view>
+    </view>
+</view>
+<!-- 标题 -->
+<view class="divider"></view>
+<view class="goods-title">图文详情</view>
+<view class="divider"></view>
+<!-- 富文本 -->
+<view class='goods-content'>
+    <rich-text nodes="{{ introduce }}"></rich-text>
+</view>
+<!-- 底部 -->
+<view class="fixed-bar">
+    <view class="bar-item">
+        <button open-type='contact'>客服</button>
+        <mp-icon icon="group-detail" color="black" size="{{17}}"></mp-icon>
+        客服
+    </view>
+    <view class="bar-item">
+        <button open-type='share'>分享</button>
+        <mp-icon icon="link" color="black" size="{{17}}"></mp-icon>
+        分享
+    </view>
+    <view class="bar-item" bindtap="goToCart">
+        <mp-icon icon="shop" color="black" size="{{17}}"></mp-icon>
+        购物车
+    </view>
+    <view class="bar-btn" bindtap="addToCart">加入购物车</view>
+    <view class="bar-btn">立即购买</view>
+</view>

@@ -1,0 +1,66 @@
+<view class="tabs">
+    <view class="tabs-title">
+        <block wx:for="{{tabs}}" wx:key="type">
+            <view bind:tap="changeTabs" data-type='{{item.type}}' class="tabs-item {{activeType===item.type?'active':''}}">
+                {{item.text}}
+            </view>
+        </block>
+    </view>
+    <view class="tab-content">
+        <block wx:for="{{orders}}" wx:key="order_id">
+        <view class="col"></view>
+            <!-- <view class="order-item">
+                <view class="order-item-row">
+                    <text>订单编号</text>
+                    <text>{{item.order_number}}</text>
+                </view>
+                <view class="order-item-row">
+                    <text>订单价格</text>
+                    <text class="order-item-price">{{ item.order_price }}</text>
+                </view>
+                <view class="order-item-row">
+                    <text>订单日期</text>
+                    <text>{{ item.format_time }}</text>
+                </view>
+                <view class="order-item-row">
+                    <text>订单状态</text>
+                    <button wx:if="{{ item.pay_status === '0' }}" size="mini" type="warn">
+                        去支付
+                    </button>
+                    <button wx:if="{{ item.pay_status === '1' }}" size="mini" type="primary">
+                        看物流
+                    </button>
+                </view>
+            </view> -->
+            <view class="cart">
+                <view class="cart-list">
+                    <block wx:for="{{item.goods}}" wx:key="id">
+                        <view class='cart-item'>
+                            <view class="cart-item-right">
+                                <navigator url="/pages/goods_detail/index?goods_id={{ item.goods_id }}" class="product-item">
+                                    <image src="{{ item.goods_small_logo }}" class="product-item-left" />
+                                    <view class="product-item-right">
+                                        <view class="product-name">{{item.goods_name}}</view>
+                                        <view class="product-price">{{ item.goods_price}}</view>
+                                    </view>
+                                </navigator>
+                                <view class="count">
+                                    <view class="count-number">x {{ item.goods_number}}</view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="cart-price">
+                            共{{ item.goods_number}}件商品 总计:￥{{ item.goods_price }}(含运费0.00)
+                        </view>
+                    </block>
+                </view>
+            </view>
+            <view class="cart-number">
+                <view class="cart-order">订单号:  {{ item.order_number }}</view>
+                <view class="pay_status" wx:if="{{ item.pay_status === '0' }}">去支付</view>
+                <view class="pay_status" wx:if="{{ item.pay_status === '1' }}">看物流</view>
+                <view class="pay_status" wx:if="{{ item.pay_status === '2' }}">退货</view>
+            </view>
+        </block>
+    </view>
+</view>
